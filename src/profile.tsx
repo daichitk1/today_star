@@ -7,10 +7,16 @@ const Profile = () => {
   }
   return (
     isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} className="rounded" />
-        <h2>{user.name}</h2>
-        <p>{user.email}</p>
+      <div className="flex mx-auto">
+        <div className="mx-3">
+          <h2>名前: {user.name}</h2>
+          <h2>メール: {user.email}</h2>
+        </div>
+        <img
+          src={user.picture}
+          alt={user.name}
+          className="rounded-full w-15 h-15"
+        />
       </div>
     )
   );
