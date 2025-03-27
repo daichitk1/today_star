@@ -31,6 +31,23 @@ function App() {
           </div>
         </div>
       </header>
+      {isAuthenticated && (
+        <div>
+          <div className="w-200 h-100 bg-blue-100 mx-auto rounded-3xl my-10 p-3">
+            <div className="bg-blue-400 w-30 text-center rounded-3xl">
+              1週間の結果
+            </div>
+          </div>
+          <div className="w-200 h-100 bg-red-100 mx-auto rounded-3xl my-10 p-3">
+            <div className="bg-red-400 w-30 text-center rounded-3xl">
+              今日の結果
+            </div>
+          </div>
+        </div>
+      )}
+      <footer className="max-w-300 h-20 mx-auto my-auto py-3 bg-gray-100">
+        <div className="flex justify-between px-10"></div>
+      </footer>
     </>
   );
 }
