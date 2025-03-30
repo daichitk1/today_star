@@ -4,15 +4,23 @@ import LogoutButton from "./logout";
 import Profile from "./profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import { useEffect } from "react";
+import { useState } from "react";
 function App() {
+  const [tag, setTag] = useState("");
   const { isAuthenticated } = useAuth0();
-  axios
-    .get("http://localhost:3000/api/v1/tags", {
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-    .then((response: { data: unknown }) => console.log(response.data));
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/tags", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+      .then((response) => {
+        setTag(response.data[0].name);
+      });
+  }, []);
+
   return (
     <>
       <div className="max-w-300 mx-auto">
@@ -22,6 +30,7 @@ function App() {
               日常振り返りアプリ
             </h2>
             <div className="flex">
+              {tag}
               {!isAuthenticated ? (
                 <div className="my-auto">
                   <LoginButton></LoginButton>
