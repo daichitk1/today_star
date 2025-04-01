@@ -10,6 +10,7 @@ function App() {
   const [tag, setTag] = useState("");
   const { isAuthenticated } = useAuth0();
   const [textbox, setTextbox] = useState(false);
+  const [newtag, setNewTag] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:3000/api/v1/tags", {
@@ -27,6 +28,21 @@ function App() {
       <button
         onClick={() => {
           setTextbox(false);
+        }}
+        className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
+      >
+        非表示
+      </button>
+      <div>日常</div>
+      <div>フォーム</div>
+    </div>
+  );
+
+  const FormTag = () => (
+    <div className="h-300 w-300 bg-blue-200 rounded-3xl my-5">
+      <button
+        onClick={() => {
+          setNewTag(false);
         }}
         className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
       >
@@ -66,7 +82,12 @@ function App() {
         </header>
         {isAuthenticated && (
           <div>
-            <button className="mx-1 my-auto max-w-300 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl">
+            <button
+              onClick={() => {
+                setNewTag(true);
+              }}
+              className="mx-1 my-auto max-w-300 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
+            >
               新規タグ
             </button>
             <button
@@ -78,6 +99,7 @@ function App() {
               記録作成
             </button>
             {textbox && <TextBox />}
+            {newtag && <FormTag />}
 
             <div>
               <div className="max-w-300 h-100 bg-blue-100 mx-auto rounded-3xl my-10 p-3">
