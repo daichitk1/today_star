@@ -23,12 +23,12 @@ function App() {
   }, []);
 
   const TextBox = () => (
-    <div className="h-300 w-300 bg-gray-100 rounded-3xl">
+    <div className="h-300 w-300 bg-green-200 rounded-3xl my-5">
       <button
         onClick={() => {
           setTextbox(false);
         }}
-        className="h-15 w-15 rounded-full bg-gray-300 hover:bg-gray-500 text-center text-middle"
+        className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
       >
         非表示
       </button>
