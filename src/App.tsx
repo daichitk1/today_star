@@ -3,25 +3,20 @@ import LoginButton from "./login";
 import LogoutButton from "./logout";
 import Profile from "./profile";
 import { useAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
-import { useEffect } from "react";
 import { useState } from "react";
+
 function App() {
-  const [tag, setTag] = useState("");
   const { isAuthenticated } = useAuth0();
   const [textbox, setTextbox] = useState(false);
-  const [newtag, setNewTag] = useState(false);
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/api/v1/tags", {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-      .then((response) => {
-        setTag(response.data[0].name);
-      });
-  }, []);
+  const [form, setForm] = useState({ comment: "コメント" });
+
+  const handleForm = (e) => {
+    console.log(form.comment);
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const TextBox = () => (
     <div className="h-300 w-300 bg-green-200 rounded-3xl my-5">
@@ -33,23 +28,24 @@ function App() {
       >
         非表示
       </button>
-      <div>日常</div>
-      <div>フォーム</div>
-    </div>
-  );
 
-  const FormTag = () => (
-    <div className="h-300 w-300 bg-blue-200 rounded-3xl my-5">
-      <button
-        onClick={() => {
-          setNewTag(false);
-        }}
-        className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
-      >
-        非表示
-      </button>
-      <div>日常</div>
-      <div>フォーム</div>
+      <form>
+        <label htmlFor="comment">今日の一言</label>
+        <br />
+        <input
+          name="comment"
+          onChange={handleForm}
+          placeholder="コメントを入力してください"
+          className="m-5 rounded-xl bg-white w-100 h-10"
+          value={form.comment}
+        ></input>
+        <button
+          type="button"
+          className="w-20 h-8 rounded-xl bg-white hover:bg-gray-300"
+        >
+          決定
+        </button>
+      </form>
     </div>
   );
 
@@ -61,8 +57,8 @@ function App() {
             <h2 className="my-auto text-xl font-bold text-blue-500">
               日常振り返りアプリ
             </h2>
+            {form.comment}
             <div className="flex">
-              {tag}
               {!isAuthenticated ? (
                 <div className="my-auto">
                   <LoginButton></LoginButton>
@@ -84,14 +80,6 @@ function App() {
           <div>
             <button
               onClick={() => {
-                setNewTag(true);
-              }}
-              className="mx-1 my-auto max-w-300 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-3xl"
-            >
-              新規タグ
-            </button>
-            <button
-              onClick={() => {
                 setTextbox(true);
               }}
               className="mt-3 my-auto max-w-300 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-3xl"
@@ -99,7 +87,6 @@ function App() {
               記録作成
             </button>
             {textbox && <TextBox />}
-            {newtag && <FormTag />}
 
             <div>
               <div className="max-w-300 h-100 bg-blue-100 mx-auto rounded-3xl my-10 p-3">
