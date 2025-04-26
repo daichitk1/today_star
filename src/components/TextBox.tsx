@@ -5,16 +5,17 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 
 export const TextBox = (props: unknown) => {
-  const postDiaryReflection = () => {
+  const postDiaryReflection = async () => {
     console.log("nya--n");
     {
       props.form.comment.length <= 0
         ? alert("1文字以上文字を入力してください")
-        : axios.post(
+        : await axios.post(
             "http://localhost:4000/api/v1/daily_reflections",
             {
               daily_reflection: {
                 comment: props.form.comment,
+                rating: props.value,
               },
             },
             {
@@ -22,6 +23,8 @@ export const TextBox = (props: unknown) => {
             }
           );
       props.setForm({ comment: "" });
+      props.setValue(0);
+      await props.getComment();
     }
   };
 

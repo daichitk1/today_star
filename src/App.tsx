@@ -19,13 +19,22 @@ function App() {
       ...form,
       [e.target.name]: e.target.value,
     });
-  };
-  useEffect(() => {
     axios.get("http://localhost:4000/api/v1/daily_reflections").then((res) => {
       setTodayComments(res.data);
       console.log(res.data);
     });
-  }, [form]);
+  };
+
+  const getComment = async () => {
+    await axios
+      .get("http://localhost:4000/api/v1/daily_reflections")
+      .then((res) => {
+        setTodayComments(res.data);
+      });
+  };
+  useEffect(() => {
+    getComment();
+  }, []);
   return (
     <>
       <div className="max-w-300 mx-auto">
@@ -79,6 +88,7 @@ function App() {
                 setForm={setForm}
                 value={value}
                 setValue={setValue}
+                getComment={getComment}
               />
             )}
 
@@ -94,7 +104,12 @@ function App() {
                 </div>
                 <div>
                   {todaycomments.map((today_comment, index) => (
-                    <p key={index}>{today_comment.comment}</p>
+                    <div className="flex">
+                      <div key={index} className="me-5">
+                        コメント:{today_comment.comment}
+                      </div>
+                      <div>評価:{today_comment.rating}</div>
+                    </div>
                   ))}
                 </div>
               </div>
