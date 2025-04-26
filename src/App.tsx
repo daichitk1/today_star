@@ -4,21 +4,26 @@ import LoginButton from "./login";
 import LogoutButton from "./logout";
 import Profile from "./profile";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
   const { isAuthenticated } = useAuth0();
   const [textbox, setTextbox] = useState(false);
   const [form, setForm] = useState({ comment: "コメント" });
-
+  const [todaycomments, setTodayComments] = useState([]);
   const handleForm = (e: unknown) => {
-    console.log(form.comment);
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
-
+  useEffect(() => {
+    axios.get("http://localhost:4000/api/v1/daily_reflections").then((res) => {
+      setTodayComments(res.data);
+      console.log(res.data);
+    });
+  }, []);
   return (
     <>
       <div className="max-w-300 mx-auto">
@@ -56,11 +61,20 @@ function App() {
             >
               記録作成
             </button>
+            <button
+              onClick={() => {
+                setTextbox(false);
+              }}
+              className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
+            >
+              非表示
+            </button>
             {textbox && (
               <TextBox
                 form={form}
                 handleForm={handleForm}
                 setTextbox={setTextbox}
+                setForm={setForm}
               />
             )}
 
@@ -73,6 +87,11 @@ function App() {
               <div className="max-w-300 h-100 bg-red-100 mx-auto rounded-3xl my-10 p-3">
                 <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
                   今日の結果
+                </div>
+                <div>
+                  {todaycomments.map((today_comment, index) => (
+                    <p key={index}>{today_comment.comment}</p>
+                  ))}
                 </div>
               </div>
             </div>
