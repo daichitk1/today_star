@@ -6,12 +6,14 @@ import Profile from "./profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import * as React from "react";
 
 function App() {
   const { isAuthenticated } = useAuth0();
   const [textbox, setTextbox] = useState(false);
   const [form, setForm] = useState({ comment: "コメント" });
   const [todaycomments, setTodayComments] = useState([]);
+  const [value, setValue] = React.useState<number | null>(2);
   const handleForm = (e: unknown) => {
     setForm({
       ...form,
@@ -75,6 +77,8 @@ function App() {
                 handleForm={handleForm}
                 setTextbox={setTextbox}
                 setForm={setForm}
+                value={value}
+                setValue={setValue}
               />
             )}
 

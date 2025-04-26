@@ -1,4 +1,9 @@
 import axios from "axios";
+import * as React from "react";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import Typography from "@mui/material/Typography";
+
 export const TextBox = (props: unknown) => {
   const postDiaryReflection = () => {
     console.log("nya--n");
@@ -12,7 +17,6 @@ export const TextBox = (props: unknown) => {
                 comment: props.form.comment,
               },
             },
-
             {
               headers: { "Content-Type": "application/json" },
             }
@@ -28,6 +32,17 @@ export const TextBox = (props: unknown) => {
           今日の一言
         </div>
         <br />
+        <Box sx={{ "& > legend": { mt: 2 } }}>
+          <Typography component="legend">充実度</Typography>
+          <Rating
+            name="simple-controlled"
+            value={props.value}
+            onChange={(event, newValue) => {
+              props.setValue(newValue);
+            }}
+          />
+        </Box>
+
         <input
           name="comment"
           onChange={props.handleForm}
