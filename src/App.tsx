@@ -23,7 +23,7 @@ function App() {
       setTodayComments(res.data);
       console.log(res.data);
     });
-  }, []);
+  }, [form]);
   return (
     <>
       <div className="max-w-300 mx-auto">
