@@ -2,20 +2,23 @@ import axios from "axios";
 export const TextBox = (props: unknown) => {
   const postDiaryReflection = () => {
     console.log("nya--n");
+    {
+      props.form.comment.length <= 0
+        ? alert("1文字以上文字を入力してください")
+        : axios.post(
+            "http://localhost:4000/api/v1/daily_reflections",
+            {
+              daily_reflection: {
+                comment: props.form.comment,
+              },
+            },
 
-    axios.post(
-      "http://localhost:4000/api/v1/daily_reflections",
-      {
-        daily_reflection: {
-          comment: props.form.comment,
-        },
-      },
-
-      {
-        headers: { "Content-Type": "application/json" },
-      }
-    );
-    props.setForm({ comment: "" });
+            {
+              headers: { "Content-Type": "application/json" },
+            }
+          );
+      props.setForm({ comment: "" });
+    }
   };
 
   return (
@@ -28,9 +31,10 @@ export const TextBox = (props: unknown) => {
         <input
           name="comment"
           onChange={props.handleForm}
-          placeholder="コメントを入力してください"
+          placeholder="今日の一言を入力してください"
           className="m-5 rounded-xl bg-white w-100 h-10"
           value={props.form.comment}
+          min="1"
         ></input>
         <button
           type="button"
