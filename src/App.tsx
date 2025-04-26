@@ -98,7 +98,7 @@ function App() {
                   1週間の結果
                 </div>
               </div>
-              <div className="max-w-300 h-100 bg-red-100 mx-auto rounded-3xl my-10 p-3">
+              <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
                 <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
                   今日の結果
                 </div>

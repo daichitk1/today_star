@@ -3,8 +3,10 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const TextBox = (props: unknown) => {
+  const { user } = useAuth0();
   const postDiaryReflection = async () => {
     console.log("nya--n");
     {
@@ -16,6 +18,7 @@ export const TextBox = (props: unknown) => {
               daily_reflection: {
                 comment: props.form.comment,
                 rating: props.value,
+                email: user.email,
               },
             },
             {
