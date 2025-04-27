@@ -10,8 +10,8 @@ import * as React from "react";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();
-  const [textbox, setTextbox] = useState(false);
-  const [form, setForm] = useState({ comment: "コメント" });
+
+  const [form, setForm] = useState({ comment: "" });
   const [todaycomments, setTodayComments] = useState([]);
   const [value, setValue] = React.useState<number | null>(2);
   const handleForm = (e: unknown) => {
@@ -35,8 +35,17 @@ function App() {
       });
   };
   useEffect(() => {
-    getComment();
-  }, []);
+    if (user) {
+      axios
+        .get(
+          "http://localhost:4000/api/v1/daily_reflections?email=" + user.email
+        )
+        .then((res) => {
+          setTodayComments(res.data);
+        });
+    }
+  }, [user]);
+
   return (
     <>
       <div className="max-w-300 mx-auto">
@@ -66,33 +75,16 @@ function App() {
         </header>
         {isAuthenticated && (
           <div>
-            <button
-              onClick={() => {
-                setTextbox(true);
-              }}
-              className="mt-3 my-auto max-w-300 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-3xl"
-            >
-              記録作成
-            </button>
-            <button
-              onClick={() => {
-                setTextbox(false);
-              }}
-              className="p-3 m-3 rounded-3xl bg-gray-100 hover:bg-gray-300 text-center text-middle"
-            >
-              非表示
-            </button>
-            {textbox && (
+            {
               <TextBox
                 form={form}
                 handleForm={handleForm}
-                setTextbox={setTextbox}
                 setForm={setForm}
                 value={value}
                 setValue={setValue}
                 getComment={getComment}
               />
-            )}
+            }
 
             <div>
               <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
