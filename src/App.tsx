@@ -9,7 +9,7 @@ import axios from "axios";
 import * as React from "react";
 
 function App() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated, user } = useAuth0();
   const [textbox, setTextbox] = useState(false);
   const [form, setForm] = useState({ comment: "コメント" });
   const [todaycomments, setTodayComments] = useState([]);
@@ -19,15 +19,17 @@ function App() {
       ...form,
       [e.target.name]: e.target.value,
     });
-    axios.get("http://localhost:4000/api/v1/daily_reflections").then((res) => {
-      setTodayComments(res.data);
-      console.log(res.data);
-    });
+    axios
+      .get("http://localhost:4000/api/v1/daily_reflections?email=" + user.email)
+      .then((res) => {
+        setTodayComments(res.data);
+        console.log(res.data);
+      });
   };
 
   const getComment = async () => {
     await axios
-      .get("http://localhost:4000/api/v1/daily_reflections")
+      .get("http://localhost:4000/api/v1/daily_reflections?email=" + user.email)
       .then((res) => {
         setTodayComments(res.data);
       });
@@ -93,11 +95,6 @@ function App() {
             )}
 
             <div>
-              <div className="max-w-300 h-100 bg-blue-100 mx-auto rounded-3xl my-10 p-3">
-                <div className="text-white bg-blue-600 w-30 text-center rounded-3xl">
-                  1週間の結果
-                </div>
-              </div>
               <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
                 <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
                   今日の結果
