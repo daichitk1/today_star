@@ -1,5 +1,6 @@
 import "./App.css";
-import { TextBox } from "./components/TextBox";
+import { NewTextBox } from "./components/NewTextBox";
+import { EditTextBox } from "./components/EditTextBox";
 import LoginButton from "./login";
 import LogoutButton from "./logout";
 import Profile from "./profile";
@@ -13,23 +14,19 @@ function App() {
 
   const [form, setForm] = useState({ comment: "" });
   const [todaycomments, setTodayComments] = useState([]);
+  const [allcomments, setAllComments] = useState([]);
   const [value, setValue] = React.useState<number | null>(2);
   const handleForm = (e: unknown) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
-    axios
-      .get("http://localhost:4000/api/v1/daily_reflections?email=" + user.email)
-      .then((res) => {
-        setTodayComments(res.data);
-        console.log(res.data);
-      });
+    getComment();
   };
 
   const getComment = async () => {
     await axios
-      .get("http://localhost:4000/api/v1/daily_reflections?email=" + user.email)
+      .get("http://localhost:4000/api/v1/today_reflection?email=" + user.email)
       .then((res) => {
         setTodayComments(res.data);
       });
@@ -38,13 +35,20 @@ function App() {
     if (user) {
       axios
         .get(
-          "http://localhost:4000/api/v1/daily_reflections?email=" + user.email
+          "http://localhost:4000/api/v1/today_reflection?email=" + user.email
         )
         .then((res) => {
           setTodayComments(res.data);
         });
+      axios
+        .get(
+          "http://localhost:4000/api/v1/daily_reflections?email=" + user.email
+        )
+        .then((res) => {
+          setAllComments(res.data);
+        });
     }
-  }, [user]);
+  }, [user, todaycomments]);
 
   return (
     <>
@@ -73,10 +77,11 @@ function App() {
             </div>
           </div>
         </header>
+
         {isAuthenticated && (
           <div>
-            {
-              <TextBox
+            {todaycomments.length == 0 ? (
+              <NewTextBox
                 form={form}
                 handleForm={handleForm}
                 setForm={setForm}
@@ -84,27 +89,51 @@ function App() {
                 setValue={setValue}
                 getComment={getComment}
               />
-            }
-
-            <div>
-              <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
-                <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
-                  今日の結果
-                </div>
+            ) : (
+              <>
                 <div>
-                  {todaycomments.map((today_comment, index) => (
-                    <div className="flex">
-                      <div key={index} className="me-5">
-                        コメント:{today_comment.comment}
-                      </div>
-                      <div>評価:{today_comment.rating}</div>
+                  <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
+                    <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
+                      今日の振り返り
                     </div>
-                  ))}
+                    <div>
+                      {todaycomments.map((today_comment, index) => (
+                        <div key={index} className="flex">
+                          <div className="me-5">
+                            コメント:{today_comment.comment}
+                          </div>
+                          <div>評価:{today_comment.rating}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+                <EditTextBox
+                  form={form}
+                  handleForm={handleForm}
+                  setForm={setForm}
+                  value={value}
+                  setValue={setValue}
+                  getComment={getComment}
+                  todaycomments={todaycomments}
+                />
+              </>
+            )}
           </div>
         )}
+      </div>
+      <div>
+        <div>
+          {allcomments.map((one_comment, index) => (
+            <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
+              <div key={index} className="flex">
+                <div className="me-5">日付:{one_comment.created_at}</div>
+                <div className="me-5">コメント:{one_comment.comment}</div>
+                <div>評価:{one_comment.rating}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

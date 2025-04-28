@@ -5,15 +5,14 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export const TextBox = (props: unknown) => {
+export const EditTextBox = (props: unknown) => {
   const { user } = useAuth0();
   const postDiaryReflection = async () => {
-    console.log("nya--n");
     {
       props.form.comment.length <= 0
         ? alert("1文字以上文字を入力してください")
-        : await axios.post(
-            "http://localhost:4000/api/v1/daily_reflections",
+        : await axios.put(
+            `http://localhost:4000/api/v1/daily_reflections/${props.todaycomments[0].id}`,
             {
               daily_reflection: {
                 comment: props.form.comment,
@@ -34,8 +33,8 @@ export const TextBox = (props: unknown) => {
   return (
     <div className="bg-green-100 rounded-3xl my-5 p-3">
       <form>
-        <div className="bg-green-600 text-white w-30 text-center rounded-3xl">
-          今日の一言
+        <div className="bg-green-600 text-white w-50 text-center rounded-3xl">
+          今日の一言の編集
         </div>
         <br />
         <Box sx={{ "& > legend": { mt: 2 } }}>
@@ -52,7 +51,7 @@ export const TextBox = (props: unknown) => {
         <input
           name="comment"
           onChange={props.handleForm}
-          placeholder="今日の一言を入力してください"
+          placeholder={props.todaycomments[0].comment}
           className="m-5 rounded-xl bg-white w-100 h-10"
           value={props.form.comment}
           min="1"
