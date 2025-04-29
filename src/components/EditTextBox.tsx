@@ -34,7 +34,7 @@ export const EditTextBox = (props: unknown) => {
     <div className="border-2 border-gray-400 rounded-xl my-5 p-3">
       <form>
         <div className="bg-green-600 text-white w-50 text-center rounded-xl">
-          今日の一言の作成
+          今日の一言の編集
         </div>
         <br />
         <Box sx={{ "& > legend": { mt: 2 } }}>
@@ -51,7 +51,7 @@ export const EditTextBox = (props: unknown) => {
         <input
           name="comment"
           onChange={props.handleForm}
-          placeholder="今日の一言を入力してください"
+          placeholder={props.todaycomments[0].comment}
           className="m-5 rounded-xl bg-white w-100 h-10 border-2 border-gray-500"
           value={props.form.comment}
           min="1"
