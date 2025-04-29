@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AllReflection } from "./components/AllReflection";
 import axios from "axios";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 function App() {
   const { isAuthenticated, user } = useAuth0();
@@ -74,8 +75,17 @@ function App() {
               <>
                 <div>
                   <div className="max-w-300 border-2 border-gray-400 mx-auto rounded-xl my-10 p-3">
-                    <div className="text-white bg-red-600 w-30 text-center rounded-xl">
-                      今日の振り返り
+                    <div className="flex">
+                      <div className="text-white bg-red-600 w-30 text-center rounded-xl">
+                        振り返り
+                      </div>
+
+                      <Link
+                        to="/Reflections"
+                        className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
+                      >
+                        過去の振り返り
+                      </Link>
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
@@ -101,7 +111,6 @@ function App() {
                 />
               </>
             )}
-            <AllReflection allcomments={allcomments}></AllReflection>
           </div>
         )}
       </div>
