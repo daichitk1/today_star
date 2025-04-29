@@ -126,10 +126,10 @@ function App() {
                 />
               </>
             )}
+            <AllReflection allcomments={allcomments}></AllReflection>
           </div>
         )}
       </div>
-      <AllReflection allcomments={allcomments}></AllReflection>
     </>
   );
 }
