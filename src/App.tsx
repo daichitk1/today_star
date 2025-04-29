@@ -126,10 +126,12 @@ function App() {
         <div>
           {allcomments.map((one_comment, index) => (
             <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
-              <div key={index} className="flex">
+              <div key={index}>
                 <div className="me-5">日付:{one_comment.created_at}</div>
-                <div className="me-5">コメント:{one_comment.comment}</div>
-                <div>評価:{one_comment.rating}</div>
+                <div className="flex">
+                  <div>{"⭐️".repeat(Number(one_comment.rating))}</div>
+                  <div className="me-5">{one_comment.comment}</div>
+                </div>
               </div>
             </div>
           ))}
