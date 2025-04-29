@@ -1,9 +1,7 @@
 import "./App.css";
 import { NewTextBox } from "./components/NewTextBox";
 import { EditTextBox } from "./components/EditTextBox";
-import LoginButton from "./login";
-import LogoutButton from "./logout";
-import Profile from "./profile";
+import { Header } from "./components/header";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { AllReflection } from "./components/AllReflection";
@@ -59,30 +57,7 @@ function App() {
   return (
     <>
       <div className="max-w-300 mx-auto">
-        <header className="max-w-300 mx-auto my-auto py-3 rounded-xl bg-gray-100">
-          <div className="flex justify-between px-10">
-            <h2 className="my-auto text-xl font-bold text-blue-500">
-              日常振り返りアプリ
-            </h2>
-            {form.comment}
-            <div className="flex">
-              {!isAuthenticated ? (
-                <div className="my-auto">
-                  <LoginButton></LoginButton>
-                </div>
-              ) : (
-                <div className="flex">
-                  <div className="bg-blue-100 rounded-xl mx-3 py-3 px-2">
-                    <Profile></Profile>
-                  </div>
-                  <div className="my-auto">
-                    <LogoutButton></LogoutButton>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </header>
+        <Header isAuthenticated={isAuthenticated}></Header>
 
         {isAuthenticated && (
           <div>

@@ -8,8 +8,7 @@ export const AllReflection = (props: unknown) => {
         {props.allcomments.map((one_comment, index) => (
           <div className="max-w-290 border-2 border-gray-300 mx-auto rounded-xl mb-2 p-3">
             <div key={index}>
-              <div className="me-5">
-                日付:
+              <div className="me-5 text-xs">
                 {new Date(one_comment.updated_at).toLocaleDateString("ja-JP", {
                   timeZone: "Asia/Tokyo",
                   year: "numeric",
