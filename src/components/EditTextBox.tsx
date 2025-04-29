@@ -36,7 +36,7 @@ export const EditTextBox = (props: unknown) => {
         <div className="bg-green-600 text-white w-50 text-center rounded-xl">
           今日の一言の編集
         </div>
-        <br />
+
         <Box sx={{ "& > legend": { mt: 2 } }}>
           <Typography component="legend">充実度</Typography>
           <Rating
