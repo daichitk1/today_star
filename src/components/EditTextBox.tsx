@@ -31,7 +31,7 @@ export const EditTextBox = (props: unknown) => {
   };
 
   return (
-    <div className="border-2 border-gray-600 rounded-xl my-5 p-3">
+    <div className="border-2 border-gray-400 rounded-xl my-5 p-3">
       <form>
         <div className="bg-green-600 text-white w-50 text-center rounded-xl">
           今日の一言の作成
