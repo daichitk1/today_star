@@ -32,9 +32,9 @@ export const NewTextBox = (props: unknown) => {
   };
 
   return (
-    <div className="bg-green-100 rounded-3xl my-5 p-3">
+    <div className="border-2 border-gray-600 rounded-xl my-5 p-3">
       <form>
-        <div className="bg-green-600 text-white w-50 text-center rounded-3xl">
+        <div className="bg-green-600 text-white w-50 text-center rounded-xl">
           今日の一言の作成
         </div>
         <br />
@@ -53,13 +53,13 @@ export const NewTextBox = (props: unknown) => {
           name="comment"
           onChange={props.handleForm}
           placeholder="今日の一言を入力してください"
-          className="m-5 rounded-xl bg-white w-100 h-10"
+          className="m-5 rounded-xl bg-white w-100 h-10 border-2 border-gray-500"
           value={props.form.comment}
           min="1"
         ></input>
         <button
           type="button"
-          className="w-20 h-8 rounded-xl bg-white hover:bg-gray-300"
+          className="w-20 h-8 rounded-xl bg-white hover:bg-gray-300 border-2 border-gray-500"
           onClick={postDiaryReflection}
         >
           決定

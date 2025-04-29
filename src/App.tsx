@@ -53,7 +53,7 @@ function App() {
   return (
     <>
       <div className="max-w-300 mx-auto">
-        <header className="max-w-300 mx-auto my-auto py-3 rounded-3xl bg-gray-100">
+        <header className="max-w-300 mx-auto my-auto py-3 rounded-xl bg-gray-100">
           <div className="flex justify-between px-10">
             <h2 className="my-auto text-xl font-bold text-blue-500">
               日常振り返りアプリ
@@ -66,7 +66,7 @@ function App() {
                 </div>
               ) : (
                 <div className="flex">
-                  <div className="bg-blue-100 rounded-3xl mx-3 py-3 px-2">
+                  <div className="bg-blue-100 rounded-xl mx-3 py-3 px-2">
                     <Profile></Profile>
                   </div>
                   <div className="my-auto">
@@ -92,8 +92,8 @@ function App() {
             ) : (
               <>
                 <div>
-                  <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
-                    <div className="text-white bg-red-600 w-30 text-center rounded-3xl">
+                  <div className="max-w-300 border-2 border-gray-600 mx-auto rounded-xl my-10 p-3">
+                    <div className="text-white bg-red-600 w-30 text-center rounded-xl">
                       今日の振り返り
                     </div>
                     <div>
@@ -125,7 +125,7 @@ function App() {
       <div>
         <div>
           {allcomments.map((one_comment, index) => (
-            <div className="max-w-300 bg-red-100 mx-auto rounded-3xl my-10 p-3">
+            <div className="max-w-300 bg-red-100 mx-auto rounded-xl my-10 p-3">
               <div key={index}>
                 <div className="me-5">日付:{one_comment.created_at}</div>
                 <div className="flex">
