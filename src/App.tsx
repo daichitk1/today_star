@@ -6,6 +6,7 @@ import LogoutButton from "./logout";
 import Profile from "./profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
+import { AllReflection } from "./components/AllReflection";
 import axios from "axios";
 import * as React from "react";
 
@@ -40,6 +41,11 @@ function App() {
         .then((res) => {
           setTodayComments(res.data);
         });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user) {
       axios
         .get(
           "http://localhost:4000/api/v1/daily_reflections?email=" + user.email
@@ -98,11 +104,12 @@ function App() {
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
-                        <div key={index} className="flex">
-                          <div className="me-5">
-                            コメント:{today_comment.comment}
+                        <div key={index} className="flex m-2">
+                          <div className="me-5">{today_comment.comment}</div>
+                          <div>
+                            {" "}
+                            {"⭐️".repeat(Number(today_comment.rating))}
                           </div>
-                          <div>評価:{today_comment.rating}</div>
                         </div>
                       ))}
                     </div>
@@ -122,37 +129,7 @@ function App() {
           </div>
         )}
       </div>
-      <div>
-        <div className="border-2 border-gray-400 max-w-300 mx-auto p-3 rounded-xl">
-          <div className="text-white bg-red-600 w-50 text-center rounded-xl mb-3">
-            これまでの振り返り
-          </div>
-          {allcomments.map((one_comment, index) => (
-            <div className="max-w-290 border-2 border-gray-300 mx-auto rounded-xl mb-2 p-3">
-              <div key={index}>
-                <div className="me-5">
-                  日付:
-                  {new Date(one_comment.updated_at).toLocaleDateString(
-                    "ja-JP",
-                    {
-                      timeZone: "Asia/Tokyo",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    }
-                  )}
-                </div>
-                <div className="flex">
-                  <div className="me-3">
-                    {"⭐️".repeat(Number(one_comment.rating))}
-                  </div>
-                  <div className="me-5">{one_comment.comment}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <AllReflection allcomments={allcomments}></AllReflection>
     </>
   );
 }

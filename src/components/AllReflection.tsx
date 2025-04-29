@@ -1,0 +1,32 @@
+export const AllReflection = (props: unknown) => {
+  return (
+    <div>
+      <div className="border-2 border-gray-400 max-w-300 mx-auto p-3 rounded-xl">
+        <div className="text-white bg-red-600 w-50 text-center rounded-xl mb-3">
+          これまでの振り返り
+        </div>
+        {props.allcomments.map((one_comment, index) => (
+          <div className="max-w-290 border-2 border-gray-300 mx-auto rounded-xl mb-2 p-3">
+            <div key={index}>
+              <div className="me-5">
+                日付:
+                {new Date(one_comment.updated_at).toLocaleDateString("ja-JP", {
+                  timeZone: "Asia/Tokyo",
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </div>
+              <div className="flex">
+                <div className="me-3">
+                  {"⭐️".repeat(Number(one_comment.rating))}
+                </div>
+                <div className="me-5">{one_comment.comment}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
