@@ -1,6 +1,6 @@
-import LoginButton from "../login";
-import LogoutButton from "../logout";
-import Profile from "../profile";
+import LoginButton from "./common/LoginButton";
+import LogoutButton from "./common/LogoutButton";
+import Profile from "./common/Profile";
 export const Header = (props: unknown) => {
   return (
     <header className="max-w-300 mx-auto my-auto py-3 rounded-xl bg-gray-100">

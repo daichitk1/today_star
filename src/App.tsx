@@ -1,7 +1,7 @@
 import "./App.css";
 import { NewTextBox } from "./components/NewTextBox";
 import { EditTextBox } from "./components/EditTextBox";
-import { Header } from "./components/header";
+import { Header } from "./components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { AllReflection } from "./components/AllReflection";
