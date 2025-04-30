@@ -84,7 +84,7 @@ function App() {
                 <div>
                   <div className="max-w-300 border-2 border-gray-400 mx-auto rounded-xl my-5 p-3">
                     <div className="flex">
-                      <div className="text-white bg-red-600 w-50 text-center rounded-xl">
+                      <div className="text-white bg-blue-600 w-50 text-center rounded-xl">
                         今日の振り返り
                       </div>
                     </div>

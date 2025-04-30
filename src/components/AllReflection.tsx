@@ -2,7 +2,7 @@ export const AllReflection = (props: unknown) => {
   return (
     <div>
       <div className="border-2 border-gray-400 max-w-300 mx-auto p-3 rounded-xl">
-        <div className="text-white bg-red-600 w-50 text-center rounded-xl mb-3">
+        <div className="text-white bg-blue-600 w-50 text-center rounded-xl mb-3">
           これまでの振り返り
         </div>
         {props.allcomments.map((one_comment, index) => (
