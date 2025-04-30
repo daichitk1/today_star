@@ -26,7 +26,9 @@ function App() {
 
   const getComment = async () => {
     await axios
-      .get("http://localhost:4000/api/v1/today_reflection?email=" + user.email)
+      .post("http://localhost:4000/api/v1/today_reflection", {
+        email: user.email,
+      })
       .then((res) => {
         setTodayComments(res.data);
       });
@@ -34,26 +36,14 @@ function App() {
   useEffect(() => {
     if (user) {
       axios
-        .get(
-          "http://localhost:4000/api/v1/today_reflection?email=" + user.email
-        )
+        .post("http://localhost:4000/api/v1/today_reflection", {
+          email: user.email,
+        })
         .then((res) => {
           setTodayComments(res.data);
         });
     }
   }, [user]);
-
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          "http://localhost:4000/api/v1/daily_reflections?email=" + user.email
-        )
-        .then((res) => {
-          setAllComments(res.data);
-        });
-    }
-  }, [user, todaycomments]);
 
   return (
     <>
