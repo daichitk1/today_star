@@ -15,6 +15,7 @@ function App() {
   const [form, setForm] = useState({ comment: "" });
   const [todaycomments, setTodayComments] = useState([]);
   const [allcomments, setAllComments] = useState([]);
+  const [editflag, setEditFlag] = useState(false);
   const [value, setValue] = React.useState<number | null>(2);
   const handleForm = (e: unknown) => {
     setForm({
@@ -98,6 +99,12 @@ function App() {
                           </div>
                           <div>
                             <button
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold px-3 me-2 rounded-3xl"
+                              onClick={() => setEditFlag(!editflag)}
+                            >
+                              編集
+                            </button>
+                            <button
                               className="bg-red-500 hover:bg-red-700 text-white font-bold px-3 rounded-3xl"
                               onClick={() => DeleteComment(today_comment)}
                             >
@@ -109,15 +116,17 @@ function App() {
                     </div>
 
                     <div>
-                      <EditTextBox
-                        form={form}
-                        handleForm={handleForm}
-                        setForm={setForm}
-                        value={value}
-                        setValue={setValue}
-                        getComment={getComment}
-                        todaycomments={todaycomments}
-                      />
+                      {editflag && (
+                        <EditTextBox
+                          form={form}
+                          handleForm={handleForm}
+                          setForm={setForm}
+                          value={value}
+                          setValue={setValue}
+                          getComment={getComment}
+                          todaycomments={todaycomments}
+                        />
+                      )}
                     </div>
                   </div>
                 </div>
