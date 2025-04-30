@@ -63,7 +63,7 @@ function App() {
         <Header isAuthenticated={isAuthenticated}></Header>
 
         {isAuthenticated && (
-          <div>
+          <div className="mt-5">
             <Link
               to="/Reflections"
               className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
@@ -100,13 +100,13 @@ function App() {
                           </div>
                           <div>
                             <button
-                              className="bg-green-500 hover:bg-green-700 text-white font-bold px-3 me-2 rounded-3xl"
+                              className="bg-green-500 hover:bg-green-700 text-white font-bold px-3 me-2 rounded-3xl cursor-pointer"
                               onClick={() => setEditFlag(!editflag)}
                             >
                               編集
                             </button>
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold px-3 rounded-3xl"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold px-3 rounded-3xl cursor-pointer"
                               onClick={() => DeleteComment(today_comment)}
                             >
                               削除

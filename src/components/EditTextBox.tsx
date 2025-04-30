@@ -58,7 +58,7 @@ export const EditTextBox = (props: unknown) => {
         ></input>
         <button
           type="button"
-          className="w-20 h-8 rounded-xl bg-white hover:bg-gray-300 border-2 border-gray-500"
+          className="w-20 h-8 rounded-xl bg-white hover:bg-gray-300 border-2 border-gray-500 cursor-pointer"
           onClick={postDiaryReflection}
         >
           決定
