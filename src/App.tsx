@@ -17,6 +17,9 @@ function App() {
   const [allcomments, setAllComments] = useState([]);
   const [editflag, setEditFlag] = useState(false);
   const [value, setValue] = React.useState<number | null>(2);
+  const today_reflection_url = "http://localhost:4000/api/v1/today_reflection";
+  const daily_reflections_url =
+    "http://localhost:4000/api/v1/daily_reflections/";
   const handleForm = (e: unknown) => {
     setForm({
       ...form,
@@ -27,7 +30,7 @@ function App() {
 
   const getComment = async () => {
     await axios
-      .post("http://localhost:4000/api/v1/today_reflection", {
+      .post(`${today_reflection_url}`, {
         email: user.email,
       })
       .then((res) => {
@@ -37,7 +40,7 @@ function App() {
   useEffect(() => {
     if (user) {
       axios
-        .post("http://localhost:4000/api/v1/today_reflection", {
+        .post(`${today_reflection_url}`, {
           email: user.email,
         })
         .then((res) => {
@@ -48,9 +51,7 @@ function App() {
   const DeleteComment = async (today_comment) => {
     console.log(today_comment.id);
     await axios
-      .delete(
-        `http://localhost:4000/api/v1/daily_reflections/${today_comment.id}`
-      )
+      .delete(`${daily_reflections_url}+${today_comment.id}`)
       .then(() => {
         alert("削除しました");
         setTodayComments([]);

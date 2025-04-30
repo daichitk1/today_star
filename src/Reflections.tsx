@@ -10,11 +10,11 @@ import { Link } from "react-router-dom";
 export const Reflections = () => {
   const { isAuthenticated, user } = useAuth0();
   const [allcomments, setAllComments] = useState([]);
-
+  const all_reflections_url = "http://localhost:4000/api/v1/all_reflections";
   useEffect(() => {
     if (user) {
       axios
-        .post("http://localhost:4000/api/v1/all_reflections", {
+        .post(`${all_reflections_url}`, {
           email: user.email,
         })
         .then((res) => {
