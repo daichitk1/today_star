@@ -59,14 +59,15 @@ function App() {
     <>
       <div className="max-w-300 mx-auto">
         <Header isAuthenticated={isAuthenticated}></Header>
-        <Link
-          to="/Reflections"
-          className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
-        >
-          過去の振り返り
-        </Link>
+
         {isAuthenticated && (
           <div>
+            <Link
+              to="/Reflections"
+              className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
+            >
+              過去の振り返り
+            </Link>
             {todaycomments.length == 0 ? (
               <NewTextBox
                 form={form}
