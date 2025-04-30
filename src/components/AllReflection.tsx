@@ -6,17 +6,19 @@ export const AllReflection = (props: unknown) => {
           これまでの振り返り
         </div>
         {props.allcomments.map((one_comment, index) => (
-          <div className="max-w-290 border-2 border-gray-300 mx-auto rounded-xl mb-2 p-3">
+          <div className="max-w-290 border-2 bg-gray-100 border-gray-300 mx-auto rounded-xl mb-2 p-3">
             <div key={index}>
               <div className="me-5 text-xs">
-                {new Date(one_comment.updated_at).toLocaleDateString("ja-JP", {
+                {new Date(one_comment.created_at).toLocaleString("ja-JP", {
                   timeZone: "Asia/Tokyo",
                   year: "numeric",
                   month: "long",
                   day: "numeric",
+                  hour: "numeric",
+                  minute: "numeric",
                 })}
               </div>
-              <div className="flex">
+              <div className="text-3xl flex">
                 <div className="me-3">
                   {"⭐️".repeat(Number(one_comment.rating))}
                 </div>

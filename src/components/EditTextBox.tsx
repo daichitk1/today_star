@@ -31,10 +31,10 @@ export const EditTextBox = (props: unknown) => {
   };
 
   return (
-    <div className="border-2 border-gray-400 rounded-xl my-5 p-3">
+    <div className="border-2 bg-gray-100 border-gray-300 pt-5 px-1 rounded-xl mt-10">
       <form>
-        <div className="bg-green-600 text-white w-50 text-center rounded-xl">
-          今日の一言の編集
+        <div className="bg-green-500 text-white w-50 text-center rounded-xl">
+          今日の振り返りの編集
         </div>
 
         <Box sx={{ "& > legend": { mt: 2 } }}>

@@ -76,8 +76,8 @@ function App() {
                 <div>
                   <div className="max-w-300 border-2 border-gray-400 mx-auto rounded-xl my-10 p-3">
                     <div className="flex">
-                      <div className="text-white bg-red-600 w-30 text-center rounded-xl">
-                        振り返り
+                      <div className="text-white bg-red-600 w-50 text-center rounded-xl">
+                        今日の振り返り
                       </div>
 
                       <Link
@@ -89,7 +89,7 @@ function App() {
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
-                        <div key={index} className="flex m-2">
+                        <div key={index} className="text-3xl flex m-4">
                           <div className="me-5">{today_comment.comment}</div>
                           <div>
                             {" "}
@@ -97,18 +97,18 @@ function App() {
                           </div>
                         </div>
                       ))}
+                      <EditTextBox
+                        form={form}
+                        handleForm={handleForm}
+                        setForm={setForm}
+                        value={value}
+                        setValue={setValue}
+                        getComment={getComment}
+                        todaycomments={todaycomments}
+                      />
                     </div>
                   </div>
                 </div>
-                <EditTextBox
-                  form={form}
-                  handleForm={handleForm}
-                  setForm={setForm}
-                  value={value}
-                  setValue={setValue}
-                  getComment={getComment}
-                  todaycomments={todaycomments}
-                />
               </>
             )}
           </div>
