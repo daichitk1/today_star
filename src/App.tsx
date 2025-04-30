@@ -59,7 +59,12 @@ function App() {
     <>
       <div className="max-w-300 mx-auto">
         <Header isAuthenticated={isAuthenticated}></Header>
-
+        <Link
+          to="/Reflections"
+          className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
+        >
+          過去の振り返り
+        </Link>
         {isAuthenticated && (
           <div>
             {todaycomments.length == 0 ? (
@@ -74,18 +79,11 @@ function App() {
             ) : (
               <>
                 <div>
-                  <div className="max-w-300 border-2 border-gray-400 mx-auto rounded-xl my-10 p-3">
+                  <div className="max-w-300 border-2 border-gray-400 mx-auto rounded-xl my-5 p-3">
                     <div className="flex">
                       <div className="text-white bg-red-600 w-50 text-center rounded-xl">
                         今日の振り返り
                       </div>
-
-                      <Link
-                        to="/Reflections"
-                        className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
-                      >
-                        過去の振り返り
-                      </Link>
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
@@ -99,7 +97,7 @@ function App() {
                           </div>
                           <div>
                             <button
-                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded-3xl"
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold px-3 rounded-3xl"
                               onClick={() => DeleteComment(today_comment)}
                             >
                               削除
