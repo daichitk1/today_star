@@ -44,7 +44,17 @@ function App() {
         });
     }
   }, [user]);
-
+  const DeleteComment = async (today_comment) => {
+    console.log(today_comment.id);
+    await axios
+      .delete(
+        `http://localhost:4000/api/v1/daily_reflections/${today_comment.id}`
+      )
+      .then(() => {
+        alert("削除しました");
+        setTodayComments([]);
+      });
+  };
   return (
     <>
       <div className="max-w-300 mx-auto">
@@ -79,14 +89,27 @@ function App() {
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
-                        <div key={index} className="text-3xl flex m-4">
-                          <div className="me-5">{today_comment.comment}</div>
+                        <div>
+                          <div key={index} className="text-3xl flex m-4">
+                            <div className="me-5">
+                              {" "}
+                              {"⭐️".repeat(Number(today_comment.rating))}
+                            </div>
+                            <div className="me-5">{today_comment.comment}</div>
+                          </div>
                           <div>
-                            {" "}
-                            {"⭐️".repeat(Number(today_comment.rating))}
+                            <button
+                              className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded-3xl"
+                              onClick={() => DeleteComment(today_comment)}
+                            >
+                              削除
+                            </button>
                           </div>
                         </div>
                       ))}
+                    </div>
+
+                    <div>
                       <EditTextBox
                         form={form}
                         handleForm={handleForm}
