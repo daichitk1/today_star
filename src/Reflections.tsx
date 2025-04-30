@@ -32,7 +32,7 @@ export const Reflections = () => {
             to="/"
             className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
           >
-            home
+            ホーム
           </Link>
         </div>
         <AllReflection allcomments={allcomments}></AllReflection>
