@@ -63,10 +63,10 @@ function App() {
         <Header isAuthenticated={isAuthenticated}></Header>
 
         {isAuthenticated && (
-          <div className="mt-5">
+          <div className="mt-5 ">
             <Link
               to="/Reflections"
-              className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900"
+              className="mx-5 rounded-2xl text-blue-500 hover:text-blue-900 flex justify-end"
             >
               過去の振り返り
             </Link>
