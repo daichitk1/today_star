@@ -4,7 +4,6 @@ import { EditTextBox } from "./components/EditTextBox";
 import { Header } from "./components/Header";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
-import { AllReflection } from "./components/AllReflection";
 import axios from "axios";
 import * as React from "react";
 import { Link } from "react-router-dom";
@@ -14,7 +13,6 @@ function App() {
 
   const [form, setForm] = useState({ comment: "" });
   const [todaycomments, setTodayComments] = useState([]);
-  const [allcomments, setAllComments] = useState([]);
   const [editflag, setEditFlag] = useState(false);
   const [value, setValue] = React.useState<number | null>(2);
   const today_reflection_url = "http://localhost:4000/api/v1/today_reflection";
