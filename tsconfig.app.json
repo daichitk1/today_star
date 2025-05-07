@@ -16,6 +16,8 @@
     "jsx": "preserve",
     "allowJs": true,
     "checkJs": false,
+    "noEmitOnError": false,
+    "forceConsistentCasingInFileNames": false,
 
     /* Linting */
     "strict": false,
