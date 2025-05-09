@@ -1,4 +1,4 @@
-export const AllReflection = (props: unknown) => {
+export const AllReflection = (props) => {
   return (
     <div>
       <div className="border-2 border-gray-400 max-w-300 mx-auto p-3 rounded-xl">

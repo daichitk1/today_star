@@ -14,11 +14,11 @@ function App() {
   const [form, setForm] = useState({ comment: "" });
   const [todaycomments, setTodayComments] = useState([]);
   const [editflag, setEditFlag] = useState(false);
-  const [value, setValue] = React.useState<number | null>(2);
+  const [value, setValue] = useState(2);
   const today_reflection_url = "http://localhost:4000/api/v1/today_reflection";
   const daily_reflections_url =
     "http://localhost:4000/api/v1/daily_reflections/";
-  const handleForm = (e: unknown) => {
+  const handleForm = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,

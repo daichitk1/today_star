@@ -1,11 +1,11 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
+import App from "./App.jsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import { Reflections } from "./Reflections";
-createRoot(document.getElementById("root")!).render(
+import { Reflections } from "./Reflections.jsx";
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Auth0Provider
       domain={import.meta.env.VITE_DOMAIN}
