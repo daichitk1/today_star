@@ -15,9 +15,10 @@ function App() {
   const [todaycomments, setTodayComments] = useState([]);
   const [editflag, setEditFlag] = useState(false);
   const [value, setValue] = useState(2);
-  const today_reflection_url = "http://localhost:4000/api/v1/today_reflection";
+  const today_reflection_url =
+    "https://today-star-backend-5d5350b9080d.herokuapp.com/api/v1/today_reflection";
   const daily_reflections_url =
-    "http://localhost:4000/api/v1/daily_reflections/";
+    "https://today-star-backend-5d5350b9080d.herokuapp.com/api/v1/daily_reflections/";
   const handleForm = (e) => {
     setForm({
       ...form,
