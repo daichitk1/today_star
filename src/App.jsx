@@ -88,8 +88,8 @@ function App() {
                     </div>
                     <div>
                       {todaycomments.map((today_comment, index) => (
-                        <div>
-                          <div key={index} className="text-3xl flex m-4">
+                        <div key={index}>
+                          <div className="text-3xl flex m-4">
                             <div className="me-5">
                               {" "}
                               {"⭐️".repeat(Number(today_comment.rating))}
