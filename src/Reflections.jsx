@@ -10,7 +10,8 @@ import { Link } from "react-router-dom";
 export const Reflections = () => {
   const { isAuthenticated, user } = useAuth0();
   const [allcomments, setAllComments] = useState([]);
-  const all_reflections_url = "http://localhost:4000/api/v1/all_reflections";
+  const all_reflections_url =
+    "https://today-star-backend-5d5350b9080d.herokuapp.com/api/v1/all_reflections";
   useEffect(() => {
     if (user) {
       axios

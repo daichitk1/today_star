@@ -12,7 +12,7 @@ export const EditTextBox = (props) => {
       props.form.comment.length <= 0
         ? alert("1文字以上文字を入力してください")
         : await axios.put(
-            `http://localhost:4000/api/v1/daily_reflections/${props.todaycomments[0].id}`,
+            `https://today-star-backend-5d5350b9080d.herokuapp.com/api/v1/daily_reflections/${props.todaycomments[0].id}`,
             {
               daily_reflection: {
                 comment: props.form.comment,
